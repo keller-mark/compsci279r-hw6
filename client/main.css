@@ -1,6 +1,8 @@
+/* We style the app so it looks nice */
 body {
   font-family: sans-serif;
   background-color: #315481;
+  /* We add a gradient background */
   background-image: linear-gradient(to bottom, #315481, #918e82 100%);
   background-attachment: fixed;
 
@@ -15,7 +17,7 @@ body {
 
   font-size: 14px;
 }
-
+/* We change the style of all HTML button elements */
 button {
   font-weight: bold;
   font-size: 1em;
@@ -29,7 +31,7 @@ button {
 button:focus {
   outline: 0;
 }
-
+/* We use CSS flexbox to lay out the elements inside of the <div id="app"> element */
 .app {
   display: flex;
   flex-direction: column;
@@ -59,6 +61,7 @@ button:focus {
 
 header {
   background: #d2edf4;
+  /* We give the heading a different gradient background */
   background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
   padding: 20px 15px 15px 15px;
   position: relative;
@@ -81,7 +84,7 @@ header {
   display: flex;
   margin: 16px;
 }
-
+/* We make the input within the new task form large */
 .task-form > input {
   flex-grow: 1;
   box-sizing: border-box;
@@ -104,6 +107,7 @@ header {
 }
 
 .tasks {
+  /* We change the style of the task list elements, removing the default bullet points in favor of the checkboxes. */
   list-style-type: none;
   padding-inline-start: 0;
   padding-left: 16px;
@@ -121,7 +125,7 @@ header {
 .tasks > li > span {
   flex-grow: 1;
 }
-
+/* We style the buttons to hide completed tasks and delete tasks */
 .tasks > li > button {
   justify-self: flex-end;
   background-color: #ff3046;
