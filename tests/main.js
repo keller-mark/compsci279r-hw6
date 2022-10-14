@@ -1,5 +1,6 @@
 import assert from "assert";
 
+// Default test file defined by the svelte-meteor app template.
 describe("simple-todos-svelte", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
