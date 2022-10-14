@@ -1,22 +1,42 @@
 <script>
-  let counter = 0;
-  const addToCounter = () => {
-    counter += 1;
+  import { TasksCollection } from '../api/TasksCollection';
+  import Task from './Task.svelte';
+  import TaskForm from './TaskForm.svelte';
+
+  let hideCompleted = false;
+  const setHideCompleted = value =>  {
+      hideCompleted = value;
   }
+
+  const hideCompletedFilter = { isChecked: { $ne: true } };
+
+  $m:tasks = TasksCollection.find(
+    hideCompleted ? hideCompletedFilter : {}, { sort: { createdAt: -1 } }
+  ).fetch()
 </script>
 
 
-<div class="container">
-  <h1>Welcome to Meteor!</h1>
+<div class="app">
+    <header>
+        <div class="app-bar">
+            <div class="app-header">
+                <h1>📝️ To Do List</h1>
+            </div>
+        </div>
+    </header>
 
-  <button on:click={addToCounter}>Click Me</button>
-  <p>You've pressed the button {counter} times.</p>
+    <div class="main">
+      <TaskForm />
+      <div class="filter">
+          <button on:click={() => setHideCompleted(!hideCompleted)}>
+              {hideCompleted ? 'Show All' : 'Hide Completed'}
+          </button>
+      </div>
 
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://svelte-tutorial.meteor.com/" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+      <ul class="tasks">
+        {#each tasks as task (task._id)}
+            <Task task={task} />
+        {/each}
+      </ul>
+    </div>
 </div>
